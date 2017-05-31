@@ -287,8 +287,8 @@ var Popover = (0, _react.createClass)({
       tipCrossPos = pos.crossLength - dockingEdgeBufferLength - this.props.tipSize * 2;
     }
 
-    // this.tipEl.style.transform = `${flowToTipTranslations[zone.flow]}(${tipCrossPos}px) ${zone.flow === "column" ? "translateY(-8px)" : ""}`
-    // this.tipEl.style[jsprefix("Transform")] = this.tipEl.style.transform
+    this.tipEl.style.transform = flowToTipTranslations[zone.flow] + "(" + tipCrossPos + "px) " + (zone.flow === "column" ? "translateY(-8px)" : "");
+    this.tipEl.style[jsprefix("Transform")] = this.tipEl.style.transform;
 
     var tipShadowWidth = Math.pow(this.props.tipSize * 2, 2);
     tipShadowWidth = Math.ceil(Math.sqrt(tipShadowWidth / 2));
@@ -376,8 +376,8 @@ var Popover = (0, _react.createClass)({
     /* Hack: http://stackoverflow.com/questions/3485365/how-can-i-force-webkit-to-redraw-repaint-to-propagate-style-changes */
     this.containerEl.offsetHeight;
 
-    // this.tipEl.style.transition = "transform 150ms ease-in"
-    // this.tipEl.style[jsprefix("Transition")] = `${cssprefix("transform")} 150ms ease-in`
+    this.tipEl.style.transition = "transform 150ms ease-in";
+    this.tipEl.style[jsprefix("Transition")] = cssprefix("transform") + " 150ms ease-in";
     this.containerEl.style.transitionProperty = "top, left, opacity, transform";
     this.containerEl.style.transitionDuration = "500ms";
     this.containerEl.style.transitionTimingFunction = "cubic-bezier(0.230, 1.000, 0.320, 1.000)";
@@ -393,7 +393,7 @@ var Popover = (0, _react.createClass)({
 
     this.containerEl = (0, _reactDom.findDOMNode)(this.layerReactComponent);
     this.bodyEl = this.containerEl.querySelector(".Popover-body");
-    // this.tipEl = this.containerEl.querySelector(".Popover-tip")
+    this.tipEl = this.containerEl.querySelector(".Popover-tip");
     this.tipShadowEl = this.containerEl.querySelector(".Popover-tipShadow");
 
     /* Note: frame is hardcoded to window now but we think it will
