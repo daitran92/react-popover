@@ -35,14 +35,11 @@ var Tip = _react2.default.createClass({
       className: "Popover-tipShadow",
       style: {
         position: "absolute",
-        background: "transparent",
+        background: "#fff",
         boxShadow: "0 0 10px 0 rgba(0,0,0,.3)",
         transform: "rotate(45deg)"
       }
-    }), _react.DOM.svg(props, _react.DOM.polygon({
-      className: "Popover-tipShape",
-      points: points
-    })));
+    }));
     return triangle;
   }
 });
