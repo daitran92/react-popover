@@ -95,6 +95,7 @@ var Popover = (0, _react.createClass)({
     children: _propTypes.PropTypes.element.isRequired,
     className: _propTypes.PropTypes.string,
     enterExitTransitionDurationMs: _propTypes.PropTypes.number,
+    isAlwaysCloseWhenClick: _propTypes.PropTypes.bool,
     isOpen: _propTypes.PropTypes.bool,
     offset: _propTypes.PropTypes.number,
     place: _propTypes.PropTypes.oneOf(_layout2.default.validTypeValues),
@@ -115,7 +116,8 @@ var Popover = (0, _react.createClass)({
       onOuterAction: function noOperation() {},
       enterExitTransitionDurationMs: 500,
       children: null,
-      refreshIntervalMs: 200
+      refreshIntervalMs: 200,
+      isAlwaysCloseWhenClick: true
     };
   },
   getInitialState: function getInitialState() {
@@ -439,8 +441,12 @@ var Popover = (0, _react.createClass)({
     this.resolvePopoverLayout();
   },
   checkForOuterAction: function checkForOuterAction(event) {
-    var isOuterAction = !this.containerEl.contains(event.target) && !this.targetEl.contains(event.target);
-    if (isOuterAction) this.props.onOuterAction(event);
+    if (!this.props.isAlwaysCloseWhenClick) {
+      var isOuterAction = !this.containerEl.contains(event.target) && !this.targetEl.contains(event.target);
+      if (isOuterAction) this.props.onOuterAction(event);
+    } else {
+      this.props.onOuterAction(event);
+    }
   },
   untrackPopover: function untrackPopover() {
     clearInterval(this.checkLayoutInterval);
