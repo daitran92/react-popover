@@ -117,7 +117,7 @@ var Popover = (0, _react.createClass)({
       enterExitTransitionDurationMs: 500,
       children: null,
       refreshIntervalMs: 200,
-      isAlwaysCloseWhenClick: true
+      isAlwaysCloseWhenClick: false
     };
   },
   getInitialState: function getInitialState() {
