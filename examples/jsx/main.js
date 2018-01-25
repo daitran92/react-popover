@@ -1,6 +1,7 @@
 import "./main.css"
 import F from "ramda"
 import React from "react"
+import createClass from "create-react-class"
 import ReactDOM from "react-dom"
 import Popover from "../../lib"
 import classNames from "classnames"
@@ -13,38 +14,38 @@ const randomIntegerBetween = (from, to) => (
 
 
 
-const Main = React.createClass({
-  getInitialState () {
+const Main = createClass({
+  getInitialState() {
     return {
       isOpen: false,
     }
   },
-  toggle () {
+  toggle() {
     this.setState({ isOpen: !this.state.isOpen })
   },
-  renderPopover () {
+  renderPopover() {
     const {
       isOpen,
     } = this.state
     return (
       <Popover isOpen={isOpen} body="Boo!">
         <div
-          className={ classNames("target", { isOpen }) }
+          className={classNames("target", { isOpen })}
           onClick={this.toggle}>
-          { this.renderPerson(isOpen) }
+          {this.renderPerson(isOpen)}
         </div>
       </Popover>
     )
   },
-  renderPerson (isScared) {
+  renderPerson(isScared) {
     return (
       isScared
         ? ";o"
-        : [ <span key="taps" className="Taps">{ this.renderTaps() }</span>,
-          <span key="person">{ "Who's there?" }</span> ]
+        : [<span key="taps" className="Taps">{this.renderTaps()}</span>,
+        <span key="person">{"Who's there?"}</span>]
     )
   },
-  renderTaps () {
+  renderTaps() {
     return (
       F.range(0, randomIntegerBetween(1, 6)).map((i) => {
         const style = {
@@ -54,9 +55,9 @@ const Main = React.createClass({
       })
     )
   },
-  render () {
+  render() {
     return (
-      <div id="app">{ this.renderPopover() }</div>
+      <div id="app">{this.renderPopover()}</div>
     )
   },
 })

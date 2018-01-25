@@ -1,6 +1,7 @@
 import "./main.css"
 import F from "ramda"
 import React, { DOM as E } from "react"
+import createClass from "create-react-class"
 import { PropTypes as T } from "prop-types"
 import ReactDOM from "react-dom"
 import PopoverClass from "../../lib"
@@ -11,20 +12,20 @@ const Popover = React.createFactory(PopoverClass)
 
 
 
-const Row = React.createFactory(React.createClass({
+const Row = React.createFactory(createClass({
   displayName: "row",
   propTypes: {
     children: T.number,
   },
-  getInitialState () {
+  getInitialState() {
     return {
       isOpen: false,
     }
   },
-  toggle (toState = null) {
+  toggle(toState = null) {
     this.setState({ isOpen: toState === null ? !this.state.isOpen : toState })
   },
-  render () {
+  render() {
     const { isOpen } = this.state
     return (
       Popover({
@@ -45,13 +46,13 @@ const Row = React.createFactory(React.createClass({
 
 
 
-const Main = React.createClass({
-  render () {
+const Main = createClass({
+  render() {
     return (
       E.div({
         id: "app",
         children: (
-          F.range(0,51).map((i) => Row({}, i))
+          F.range(0, 51).map((i) => Row({}, i))
         )
       })
     )

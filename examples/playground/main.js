@@ -2,6 +2,7 @@ import "./main.css"
 import Debug from "debug"
 import R from "ramda"
 import React, { DOM as E } from "react"
+import createClass from "create-react-class"
 import ReactDOM from "react-dom"
 import DraggableClass from "react-draggable"
 import PopoverClass from "../../lib"
@@ -33,16 +34,16 @@ const createPreferPlaceOptions = R.compose(
   R.path(["types"])
 )
 
-const Demo = React.createClass({
+const Demo = createClass({
   displayName: "demo",
-  getInitialState () {
+  getInitialState() {
     return {
       popoverIsOpen: false,
       preferPlace: null,
       place: null
     }
   },
-  togglePopover (toState) {
+  togglePopover(toState) {
     debug("togglePopover")
     const popoverIsOpen = typeof toState === "boolean"
       ? toState
@@ -51,21 +52,21 @@ const Demo = React.createClass({
       popoverIsOpen
     })
   },
-  changePreferPlace (event) {
+  changePreferPlace(event) {
     const preferPlace = event.target.value === "null" ? null : event.target.value
     this.setState({ preferPlace })
   },
-  changePlace (event) {
+  changePlace(event) {
     const place = event.target.value === "null" ? null : event.target.value
     this.setState({ place })
   },
-  render () {
+  render() {
     debug("render")
 
     const targetProps = {
       className: [
         "Target",
-        `is-${[ "closed", "open" ][Number(this.state.popoverIsOpen)]}`
+        `is-${["closed", "open"][Number(this.state.popoverIsOpen)]}`
       ].join(" ")
     }
 
