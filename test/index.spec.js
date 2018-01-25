@@ -1,4 +1,5 @@
 import React from "react"
+import createClass from "create-react-class"
 import { PropTypes as T } from "prop-types"
 import Renderer from "react-test-renderer"
 import portalMixin from "../lib/react-layer-mixin"
@@ -15,12 +16,12 @@ class ContextProvider extends React.Component {
   static childContextTypes = {
     x: T.string,
   }
-  getChildContext () {
+  getChildContext() {
     return ({
       x: "value-from-context",
     })
   }
-  render () {
+  render() {
     return (
       this.props.children
     )
@@ -33,24 +34,24 @@ class ContextDependent extends React.Component {
   static contextTypes = {
     x: T.string,
   }
-  render () {
+  render() {
     return (
       <span>{this.context.x}</span>
     )
   }
 }
 
-const Portal = React.createClass({
+const Portal = createClass({
   propTypes: {
     children: T.node
   },
   mixins: [portalMixin()],
-  renderLayer () {
+  renderLayer() {
     return (
       this.props.children
     )
   },
-  render () {
+  render() {
     return null
   }
 })
